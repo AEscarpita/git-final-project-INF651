@@ -313,10 +313,10 @@ function createElemWithText (elementName = "p", textContent = "", className) {
     
       if(event?.type != "change") return;
      
-      let userId = event?.target?.value || 1;
+      let userId = event.target?.value;
 
-      if (userId = "Employees"){
-        userId = 1;
+      if (userId === "Employees" || userId === undefined){
+          userId = 1;
       }
 
       let selectMenu = event.target; 
