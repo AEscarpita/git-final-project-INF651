@@ -15,13 +15,13 @@ function createElemWithText (elementName = "p", textContent = "", className) {
     function createSelectOptions (jsonData){
       if(!jsonData) return;
         const optionElements = [];
-        jsonData.forEach((user) => {
+        for(const user of jsonData){
           const optionElem = document.createElement("option");
           optionElem.value = user.id;
           optionElem.textContent = user.name;
           optionElements.push(optionElem);
-        })
-       
+        }
+        
         return optionElements;
        
      
@@ -129,21 +129,19 @@ function createElemWithText (elementName = "p", textContent = "", className) {
         const fragmentElement = document.createDocumentFragment();
        
         //goes through each comment and creates and article, h3, and two p elements that get appended to the fragment
-        commentsData.forEach((comment) => {
-        let articleElement = document.createElement("article");
-        const h3Element = createElemWithText("h3", comment.name);
-        const pBodyElement = createElemWithText("p", comment.body);
-        const pEmailElement = createElemWithText("p", `From: ${comment.email}`);
-        articleElement.append(h3Element);
-        articleElement.append(pBodyElement);
-        articleElement.append(pEmailElement);
-        fragmentElement.append(articleElement);
-        });
+        for(const comment of commentsData){
+          let articleElement = document.createElement("article");
+          const h3Element = createElemWithText("h3", comment.name);
+          const pBodyElement = createElemWithText("p", comment.body);
+          const pEmailElement = createElemWithText("p", `From: ${comment.email}`);
+          articleElement.append(h3Element);
+          articleElement.append(pBodyElement);
+          articleElement.append(pEmailElement);
+          fragmentElement.append(articleElement);
+
+        }
        
         return fragmentElement;
-       
-     
-     
     }
     
     function populateSelectMenu(usersData){
