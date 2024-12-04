@@ -311,18 +311,28 @@ function createElemWithText (elementName = "p", textContent = "", className) {
     
     async function selectMenuChangeEventHandler(event){
     
-      if(!event) return;
-     
-      const selectMenu = document.querySelector("#selectMenu");
-     
+      if(event?.type != "change") return;
      
       let userId = event?.target?.value || 1;
+
+      if (userId = "Employees"){
+        userId = 1;
+      }
+
+      let selectMenu = event.target; 
+
+      if(selectMenu != undefined){
+        selectMenu.disabled = true;
+      }
+      
      
       let posts = await getUserPosts(userId);
      
       let refreshPostsArray = await refreshPosts(posts);
-     
-      selectMenu.disabled =  false;
+
+      if(selectMenu != undefined){
+        selectMenu.disabled = false;
+      }
      
       return [userId, posts, refreshPostsArray];
      
